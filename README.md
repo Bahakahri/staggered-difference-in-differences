@@ -32,10 +32,16 @@
 
 ## Visualisations
 
-**Treatment Timeline & Retention Trends**  
+**Treatment Timeline & Retention Trends**
+
+![Treatment Timeline](outputs/treatment_timeline.png)
+
 Four cohort lines, each showing flat pre-treatment retention then sharp jump at staggered treatment dates (months 3, 6, 9, 12). Vertical dashed lines mark treatment boundaries. Post-treatment plateau at ~8pp higher than baseline. Clear evidence of parallel trends pre-treatment.
 
-**Event Study: ATT by Relative Time**  
+**Event Study: ATT by Relative Time**
+
+![Event Study](outputs/event_study.png)
+
 Red dots (pre-treatment, relative months −11 to −1) cluster tightly around 0. Teal dots (post-treatment, relative months 0 to +12) cluster tightly around +8pp. Sharp discontinuity at relative month 0 indicates immediate treatment effect. Tight 95% confidence band around post-treatment estimates validates precision.
 
 ---
