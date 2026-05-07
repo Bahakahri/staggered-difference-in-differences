@@ -22,11 +22,11 @@
 
 | Test | Question | Result |
 |---|---|---|
-| **Pre-Trend Test** | Are pre-treatment effects zero (parallel trends)? | t-stat = −0.132, p > 0.05 ✓ |
-| **Placebo Test** | Is the fake pre-period effect near zero? | Fake ATT = −0.013pp ✓ |
-| **Cohort Homogeneity** | Do all cohorts experience the same lift? | Range: 7.843–8.094pp (0.251pp variation) ✓ |
-| **Event-Study Pattern** | Flat pre, jump at treatment, stable post? | Clear discontinuity at relative month 0 ✓ |
-| **TWFE Comparison** | Is CS unbiased vs classic TWFE? | CS: 8.022pp vs TWFE: 7.883pp (0.117pp bias in TWFE) ✓ |
+| **Pre-Trend Test** | Are pre-treatment effects zero (parallel trends)? | t-stat = −0.132, p > 0.05 |
+| **Placebo Test** | Is the fake pre-period effect near zero? | Fake ATT = −0.013pp |
+| **Cohort Homogeneity** | Do all cohorts experience the same lift? | Range: 7.843–8.094pp (0.251pp variation) |
+| **Event-Study Pattern** | Flat pre, jump at treatment, stable post? | Clear discontinuity at relative month 0 |
+| **TWFE Comparison** | Is CS unbiased vs classic TWFE? | CS: 8.022pp vs TWFE: 7.883pp (0.117pp bias in TWFE) |
 
 ---
 
