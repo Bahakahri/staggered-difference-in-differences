@@ -72,7 +72,7 @@ Raw CSV file: `staggered_did_data.csv` (19,200 rows × 6 columns: user_id, cohor
 
 ```bash
 # Clone the repo
-git clone https://github.com/[username]/staggered-difference-in-differences
+git clone https://github.com/Bahakahri/staggered-difference-in-differences
 cd staggered-difference-in-differences
 
 # Install dependencies
@@ -108,7 +108,7 @@ Expected output:
 ## Methodology Notes
 
 **Why Callaway & Sant'Anna over TWFE?**  
-Classic two-way fixed effects (TWFE) is biased when treatment is staggered and effects are heterogeneous. TWFE uses already-treated units as pseudo-controls for newly-treated units, creating negative weights that bias estimates downward. Callaway & Sant'Anna avoids this by computing cohort-specific effects ATT(g,t) and never using treated units as controls. In technical interviews, this distinction is critical—it demonstrates deep knowledge of modern causal inference for staggered experiments.
+Classic two-way fixed effects (TWFE) is biased when treatment is staggered and effects are heterogeneous. TWFE uses already-treated units as pseudo-controls for newly-treated units, creating negative weights that bias estimates downward. Callaway & Sant'Anna avoids this by computing cohort-specific effects ATT(g,t) and never using treated units as controls. In technical interviews, this distinction is critical it demonstrates deep knowledge of modern causal inference for staggered experiments.
 
 **Why not Sun & Abraham (2021)?**  
 Sun & Abraham is an alternative modern estimator (cohort-time relative-period effects). Both CS and SA work; CS is chosen for transparency and interpretability of cohort-specific effects.
