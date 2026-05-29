@@ -8,9 +8,9 @@
 
 **Step 1: Data simulation:** 800 users across 4 cohorts observed over 24 months. Staggered feature rollout: Cohort 1 treated month 3, Cohort 2 month 6, Cohort 3 month 9, Cohort 4 month 12. True embedded treatment effect: +8 percentage points (constant across cohorts). Early cohorts are higher quality users (baseline 50–56% vs 56% for late cohorts), creating confounding that naive before/after comparisons cannot separate from feature impact.
 
-**Step 2: Cohort specific ATT computation:** For each cohort g, compute baseline = average retention before treatment month. For each calendar month t, compute ATT(g,t) = retention at time t − baseline. This avoids using already treated units as pseudo controls (the TWFE bias problem). Result: cohort-time specific treatment effects.
+**Step 2: Cohort specific ATT computation:** For each cohort g, compute baseline = average retention before treatment month. For each calendar month t, compute ATT(g,t) = retention at time t−baseline. This avoids using already treated units as pseudo controls (the TWFE bias problem). Result: cohort-time specific treatment effects.
 
-**Step 3: Event-study aggregation:** Compute relative time = calendar month − treatment month. Aggregate ATT across all cohorts at each relative time period (−12 to +12 months). Pre-treatment relative times should be ≈ 0 (validates parallel trends). Post-treatment relative times show the effect trajectory.
+**Step 3: Event-study aggregation:** Compute relative time = calendar month treatment month. Aggregate ATT across all cohorts at each relative time period (−12 to +12 months). Pre-treatment relative times should be ≈ 0 (validates parallel trends). Post-treatment relative times show the effect trajectory.
 
 **Step 4: Aggregate treatment effect:** Overall ATT = mean of all post-treatment ATT(g,t) values. Compute standard error from spread of post-treatment observations. 95% CI via t-distribution.
 
