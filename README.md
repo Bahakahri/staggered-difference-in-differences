@@ -6,9 +6,9 @@
 
 ## Methodology
 
-**Step 1: Data simulation:** 800 users across 4 cohorts observed over 24 months. Staggered feature rollout: Cohort 1 treated month 3, Cohort 2 month 6, Cohort 3 month 9, Cohort 4 month 12. True embedded treatment effect: +8 percentage points (constant across cohorts). Early cohorts are higher-quality users (baseline 50–56% vs 56% for late cohorts), creating confounding that naive before-after comparisons cannot separate from feature impact.
+**Step 1: Data simulation:** 800 users across 4 cohorts observed over 24 months. Staggered feature rollout: Cohort 1 treated month 3, Cohort 2 month 6, Cohort 3 month 9, Cohort 4 month 12. True embedded treatment effect: +8 percentage points (constant across cohorts). Early cohorts are higher quality users (baseline 50–56% vs 56% for late cohorts), creating confounding that naive before/after comparisons cannot separate from feature impact.
 
-**Step 2: Cohort-specific ATT computation:** For each cohort g, compute baseline = average retention before treatment month. For each calendar month t, compute ATT(g,t) = retention at time t − baseline. This avoids using already-treated units as pseudo-controls (the TWFE bias problem). Result: cohort-time specific treatment effects.
+**Step 2: Cohort specific ATT computation:** For each cohort g, compute baseline = average retention before treatment month. For each calendar month t, compute ATT(g,t) = retention at time t − baseline. This avoids using already treated units as pseudo controls (the TWFE bias problem). Result: cohort-time specific treatment effects.
 
 **Step 3: Event-study aggregation:** Compute relative time = calendar month − treatment month. Aggregate ATT across all cohorts at each relative time period (−12 to +12 months). Pre-treatment relative times should be ≈ 0 (validates parallel trends). Post-treatment relative times show the effect trajectory.
 
@@ -91,15 +91,15 @@ Expected output:
 
 ## Limitations
 
-- **Simulated data:** Ground truth is known (+8pp embedded). Real-world data introduces unmeasured confounding, measurement error, and selection bias. The parallel trends assumption is embedded by design here, not validated from external sources
+- **Simulated data:** Ground truth is known (+8pp embedded). Realworld data introduces unmeasured confounding, measurement error, and selection bias. The parallel trends assumption is embedded by design here, not validated from external sources
 
-- **Homogeneous effects:** All cohorts experience the same lift (~8pp, range 0.251pp). If real data shows large heterogeneity (power users +12pp, casual users +2pp), the cohort-specific ATT(g) values are the key insight; aggregate ATT averages over important variation
+- **Homogeneous effects:** All cohorts experience the same lift (~8pp, range 0.251pp). If real data shows large heterogeneity (power users +12pp, casual users +2pp), the cohort specific ATT(g) values are the key insight: aggregate ATT averages over important variation
 
 - **No spillover:** Assumes treated users do not affect untreated users. If the feature enables network effects or information spillover, SUTVA is violated
 
-- **Constant treatment effect over time:** Model assumes effect does not decay or ramp up post-treatment. The event study reveals any time-varying effects, but aggregate ATT averages over them
+- **Constant treatment effect over time:** Model assumes effect does not decay or ramp up post-treatment. The event study reveals any time varying effects, but aggregate ATT averages over them
 
-- **Exogenous assignment:** Assumes cohort treatment timing is not driven by outcome trends. If high-retention cohorts were chosen for early rollout deliberately, parallel trends fails and the estimate is biased
+- **Exogenous assignment:** Assumes cohort treatment timing is not driven by outcome trends. If high retention cohorts were chosen for early rollout deliberately, parallel trends fails and the estimate is biased
 
 - **Moderate sample size:** 19,200 observations (800 users × 24 months) is standard for SaaS retention studies. Confidence intervals would narrow with larger N or longer follow-up
 
@@ -108,17 +108,16 @@ Expected output:
 ## Methodology Notes
 
 **Why Callaway & Sant'Anna over TWFE?**  
-Classic two-way fixed effects (TWFE) is biased when treatment is staggered and effects are heterogeneous. TWFE uses already-treated units as pseudo-controls for newly-treated units, creating negative weights that bias estimates downward. Callaway & Sant'Anna avoids this by computing cohort-specific effects ATT(g,t) and never using treated units as controls. In technical interviews, this distinction is critical it demonstrates deep knowledge of modern causal inference for staggered experiments.
+Classic two way fixed effects (TWFE) is biased when treatment is staggered and effects are heterogeneous. TWFE uses already treated units as pseudo controls for newly treated units, creating negative weights that bias estimates downward. Callaway & Sant'Anna avoids this by computing cohort specific effects ATT(g,t) and never using treated units as controls.
 
 **Why not Sun & Abraham (2021)?**  
-Sun & Abraham is an alternative modern estimator (cohort-time relative-period effects). Both CS and SA work; CS is chosen for transparency and interpretability of cohort-specific effects.
+Sun & Abraham is an alternative modern estimator (cohort-time relative-period effects). Both CS and SA work: CS is chosen for transparency and interpretability of cohort specific effects.
 
 **Parallel trends assumption:**  
-Validated through: (1) event-study pre-treatment coefficients clustering at 0, (2) t-test for pre-ATT = 0 (t = −0.132, fail to reject), (3) placebo test finding no fake effect in pre-period (−0.013pp). Not proven, but made as credible as the method allows.
+Validated through: (1) event study pre-treatment coefficients clustering at 0, (2) t-test for pre-ATT = 0 (t = −0.132, fail to reject), (3) placebo test finding no fake effect in pre-period (−0.013pp). Not proven, but made as credible as the method allows.
 
 **Inference:**  
-Standard errors computed from the variance of post-treatment ATT values. For formal permutation tests or bootstrap confidence intervals, use the Python `did` package.
-
+Standard errors computed from the variance of post-treatment ATT values.
 ---
 
 ## Related Projects
