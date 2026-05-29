@@ -101,7 +101,7 @@ Expected output:
 
 - **Exogenous assignment:** Assumes cohort treatment timing is not driven by outcome trends. If high retention cohorts were chosen for early rollout deliberately, parallel trends fails and the estimate is biased
 
-- **Moderate sample size:** 19,200 observations (800 users × 24 months) is standard for SaaS retention studies. Confidence intervals would narrow with larger N or longer follow-up
+- **Moderate sample size:** 19,200 observations (800 users × 24 months) is standard for SaaS retention studies. Confidence intervals would narrow with larger N or longer follow up
 
 ---
 
