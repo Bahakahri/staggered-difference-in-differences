@@ -52,6 +52,14 @@ Red dots (pre-treatment, relative months −11 to −1) cluster tightly around 0
 
 ---
 
+## Business Impact
+
+An 8 percentage point retention lift is massive for SaaS. At $100 ARPU and 12-month subscription cycles: 100 users => +8 retained users => +$9,600 annual incremental revenue (and compound growth as cohorts overlap).
+
+For SaaS product teams: the Callaway & Sant'Anna approach proves the feature works reliably across all user cohorts (homogeneous effect). No surprises. The parallel trends validation means you can confidently roll out to 100% of users without fear of bias.
+
+---
+
 ## Stack
 
 Python · pandas · numpy · matplotlib · scipy · custom CS implementation
